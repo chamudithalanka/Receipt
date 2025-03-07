@@ -1,0 +1,31 @@
+{
+    "nav": {
+        "title": "Rețetele Mele",
+        "home": "Acasă",
+        "about": "Despre Noi",
+        "contact": "Contact",
+        "language": "Română",
+        "addRecipe": "Adaugă Rețetă",
+        "add": "Adaugă"
+    },
+    "recipe": {
+        "name": "Numele Rețetei",
+        "ingredients": "Ingrediente (unul pe linie)",
+        "instructions": "Instrucțiuni de Preparare",
+        "cookingTime": "Timp de Preparare (minute)",
+        "imageUrl": "URL Imagine (opțional)",
+        "save": "Salvează Rețeta",
+        "edit": "Editează",
+        "delete": "Șterge",
+        "view": "Vezi Rețeta",
+        "addNew": "Adaugă Rețetă Nouă",
+        "minutes": "minute",
+        "ingredientsCount": "ingrediente"
+    },
+    "footer": {
+        "rights": "Toate drepturile rezervate",
+        "quickLinks": "Link-uri Rapide",
+        "connect": "Conectează-te cu Noi",
+        "privacy": "Politica de Confidențialitate"
+    }
+} 

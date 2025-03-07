@@ -1,0 +1,31 @@
+{
+    "nav": {
+        "title": "My Recipes",
+        "home": "Home",
+        "about": "About Us",
+        "contact": "Contact",
+        "language": "English",
+        "addRecipe": "Add Recipe",
+        "add": "Add"
+    },
+    "recipe": {
+        "name": "Recipe Name",
+        "ingredients": "Ingredients (one per line)",
+        "instructions": "Cooking Instructions",
+        "cookingTime": "Cooking Time (minutes)",
+        "imageUrl": "Image URL (optional)",
+        "save": "Save Recipe",
+        "edit": "Edit",
+        "delete": "Delete",
+        "view": "View Recipe",
+        "addNew": "Add New Recipe",
+        "minutes": "minutes",
+        "ingredientsCount": "ingredients"
+    },
+    "footer": {
+        "rights": "All rights reserved",
+        "quickLinks": "Quick Links",
+        "connect": "Connect With Us",
+        "privacy": "Privacy Policy"
+    }
+} 

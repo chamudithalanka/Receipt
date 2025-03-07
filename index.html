@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cooking Recipes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,si,ro',
+                layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT,
+                autoDisplay: false,
+                multilanguagePage: true
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        /* Hide Google Translate widget */
+        .goog-te-banner-frame,
+        .goog-te-balloon-frame,
+        #goog-gt-tt {
+            display: none !important;
+        }
+        .goog-te-menu-value:hover {
+            text-decoration: none !important;
+        }
+        .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+        body {
+            top: 0 !important;
+        }
+        /* Hide the automatic translation bar */
+        .skiptranslate,
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+        /* Position the Google Translate Element */
+        #google_translate_element {
+            position: fixed;
+            bottom: -1000px;
+            left: -1000px;
+            z-index: -99999;
+        }
+        #google_translate_element select {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Hidden Google Translate Element -->
+    <div id="google_translate_element"></div>
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-2 sm:px-4">
+            <div class="relative flex items-center justify-between h-16">
+                <!-- Left Side: Mobile menu button and Desktop Navigation -->
+                <div class="flex items-center">
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center p-2 text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-8 ml-8">
+                        <a href="index.html" class="text-gray-600 hover:text-red-500 transition duration-300">Home</a>
+                        <a href="portfolio" class="text-gray-600 hover:text-red-500 transition duration-300">About Us</a>
+                        <a href="https://chamudithalanka.github.io/chamuport/portfolio.html#contact" class="text-gray-600 hover:text-red-500 transition duration-300">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Centered Logo -->
+                <div class="flex-1 flex items-center justify-center">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-utensils text-2xl md:text-3xl text-red-500"></i>
+                        <h1 class="text-xl md:text-2xl font-semibold text-gray-800 hidden sm:block">My Recipes</h1>
+                    </div>
+                </div>
+
+                <!-- Right Side: Language Selector and Add Recipe Button -->
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <!-- Language Selector -->
+                    <div class="relative">
+                        <!-- Desktop Language Selector -->
+                        <div class="hidden sm:block">
+                            <button id="desktopLangBtn" class="flex items-center space-x-2 px-2 py-2 text-gray-600 hover:text-red-500 transition duration-300">
+                                <i class="fas fa-globe text-xl"></i>
+                                <span id="currentLang" class="ml-1 text-sm">English</span>
+                                <i class="fas fa-chevron-down text-sm"></i>
+                            </button>
+                            <div id="languageDropdown" class="hidden absolute top-full right-0 mt-1 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                                <button onclick="changeLanguage('en')" class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 flex items-center">
+                                    <img src="https://flagcdn.com/w20/us.png" class="w-5 h-4 mr-3" alt="English">
+                                    English
+                                </button>
+                                <button onclick="changeLanguage('si')" class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 flex items-center">
+                                    <img src="https://flagcdn.com/w20/lk.png" class="w-5 h-4 mr-3" alt="Sinhala">
+                                    සිංහල
+                                </button>
+                                <button onclick="changeLanguage('ro')" class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 flex items-center">
+                                    <img src="https://flagcdn.com/w20/ro.png" class="w-5 h-4 mr-3" alt="Romanian">
+                                    Română
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Mobile Language Button -->
+                        <div class="sm:hidden">
+                            <button id="mobileLangBtn" class="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-red-500">
+                                <i class="fas fa-globe text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Add Recipe Button -->
+                    <button id="addRecipeBtn" class="bg-red-500 hover:bg-red-600 text-white px-2 sm:px-4 py-2 rounded-lg flex items-center space-x-1 sm:space-x-2 transition duration-300 min-w-[60px] sm:min-w-[120px] justify-center">
+                        <i class="fas fa-plus text-sm"></i>
+                        <span class="hidden sm:inline whitespace-nowrap">Add Recipe</span>
+                        <span class="sm:hidden">Add</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-gray-600 hover:text-red-500 hover:bg-gray-50 transition duration-300">Home</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-gray-600 hover:text-red-500 hover:bg-gray-50 transition duration-300">About Us</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-gray-600 hover:text-red-500 hover:bg-gray-50 transition duration-300">Contact</a>
+            </div>
+        </div>
+
+        <!-- Mobile Language Menu -->
+        <div id="mobileLangMenu" class="hidden md:hidden bg-white border-t border-gray-200 absolute w-full">
+            <div class="px-2 pt-2 pb-3">
+                <div class="space-y-2">
+                    <button onclick="changeLanguage('en')" class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 rounded-md flex items-center">
+                        <img src="https://flagcdn.com/w20/us.png" class="w-5 h-4 mr-3" alt="English">
+                        English
+                    </button>
+                    <button onclick="changeLanguage('si')" class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 rounded-md flex items-center">
+                        <img src="https://flagcdn.com/w20/lk.png" class="w-5 h-4 mr-3" alt="Sinhala">
+                        සිංහල
+                    </button>
+                    <button onclick="changeLanguage('ro')" class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 rounded-md flex items-center">
+                        <img src="https://flagcdn.com/w20/ro.png" class="w-5 h-4 mr-3" alt="Romanian">
+                        Română
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Advertisement Space -->
+    <div class="w-full bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200 mt-16">
+        <div class="container mx-auto px-4 py-4">
+            <!-- Ad Container with exact dimensions -->
+            <div class="relative w-full max-w-[970px] mx-auto">
+                <div id="adSpace" class="w-full h-[90px] overflow-hidden rounded-lg shadow-sm transition-all duration-300">
+                    <!-- SVG content will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-8 pb-8 flex-grow">
+        <!-- Hidden Google Translate Element -->
+        <div id="google_translate_element"></div>
+        
+        <div id="recipeGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Recipe cards will be added here dynamically -->
+        </div>
+
+    <!-- Add/Edit Recipe Modal -->
+    <div id="recipeModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="modal-content bg-white rounded-lg shadow-xl w-11/12 max-w-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 sm:p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">Add New Recipe</h2>
+                <button class="close text-gray-500 hover:text-gray-700 text-2xl focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="recipeForm" class="space-y-4">
+                <div>
+                    <input type="text" id="recipeName" placeholder="Recipe Name" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                </div>
+                <div>
+                    <textarea id="ingredients" placeholder="Ingredients (one per line)" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent min-h-[100px]"></textarea>
+                </div>
+                <div>
+                    <textarea id="instructions" placeholder="Cooking Instructions" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent min-h-[150px]"></textarea>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="w-full sm:w-1/2">
+                        <input type="number" id="cookingTime" placeholder="Cooking Time (minutes)" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                    </div>
+                    <div class="w-full sm:w-1/2">
+                        <input type="text" id="imageUrl" placeholder="Image URL (optional)"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                    </div>
+                </div>
+                <button type="submit" 
+                    class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition duration-300">
+                    Save Recipe
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white shadow-md mt-auto">
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Logo and Copyright -->
+            <div class="flex flex-col items-center md:items-start space-y-4">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-utensils text-2xl text-red-500"></i>
+                    <span class="text-xl font-semibold text-gray-800">My Recipes</span>
+                </div>
+                <p class="text-gray-600 text-sm text-center md:text-left">
+                    © 2025 All rights reserved<br>
+                    <span class="font-medium">Chamuditha Lanka</span>
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-600 hover:text-red-500 transition duration-300">Home</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-red-500 transition duration-300">About Us</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-red-500 transition duration-300">Contact</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-red-500 transition duration-300">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Connect With Us</h3>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="https://facebook.com" target="_blank" class="text-2xl text-gray-600 hover:text-blue-600 transition duration-300">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="text-2xl text-gray-600 hover:text-blue-400 transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="text-2xl text-gray-600 hover:text-pink-600 transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="text-2xl text-gray-600 hover:text-blue-700 transition duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="text-2xl text-gray-600 hover:text-gray-900 transition duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="fixed bottom-4 right-4 bg-red-500 text-white rounded-full p-3 shadow-lg cursor-pointer opacity-0 transition-opacity duration-300 hover:bg-red-600 focus:outline-none invisible">
+    <i class="fas fa-arrow-up text-lg"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
